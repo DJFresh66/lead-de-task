@@ -1,6 +1,6 @@
 name: mojo
 version: '1.0.0'
-config-version: 2
+config-version: 3
 
 profile: mojo
 
@@ -25,9 +25,13 @@ models:
     # this is based on dbt's documented structure
     # https://docs.getdbt.com/guides/best-practices/how-we-structure/1-guide-overview
 
+# DJ 2024/02/06 using merge strategy as i don't have knowledge of partitions
+#               insert overwrite could be quicker / cheaper, would need testing
     marts:
-      +materialized: table
+      +materialized: incremental
+      +incremental_strategy: merge
 
     staging:
       +schema: staging
-      +materialized: view
+      +materialized: incremental
+      +incremental_strategy: merge

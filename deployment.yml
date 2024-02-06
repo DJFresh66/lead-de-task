@@ -1,5 +1,6 @@
 # https://fivetran.com/docs/transformations/dbt/code-setup-guide#writedbtjobs
 jobs:
+# DJ 2024/02/06 Consider simplifying the schedule to hourly? Users don't know about office hours...
 - name: hourly in-office hours
   schedule: '0 05-20 * * *'
   timeout: 30m
