@@ -1,9 +1,4 @@
-select *,
-from {{ ref('course_activity') }}
-where
-	type in ('course_completed')
-	and json_type(params.course_key) != 'string'
-
+-- DJ 2024/02/06 Consider creating the user summary as a separate (useful?) model
 with user_course_summary as (
     select
       user_id,
